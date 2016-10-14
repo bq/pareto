@@ -21,11 +21,11 @@ public interface MobileActions {
 
      void scrollDown(int times);
      void scrollUp(int times);
-     void tapInCenter();
-     void tapInLeft();
-     void tapInRight();
-     void tapInTop();
-     void tapInDown();
+     void tapOnCenter();
+     void tapOnLeft();
+     void tapOnRight();
+     void tapOnTop();
+     void tapOnBottom();
      void tap(int x, int y);
 
 

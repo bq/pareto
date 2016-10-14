@@ -26,7 +26,7 @@ public class MobileActionsImpl implements MobileActions {
     }
 
     /**
-     * Presses and swipes from a specific position of the screen to another
+     * Press and swipe from a specific screen position to another
      *
      * @param xStart start x relative coordinate
      * @param yStart start y relative coordinate
@@ -51,12 +51,12 @@ public class MobileActionsImpl implements MobileActions {
     }
 
     /**
-     * Swipes across the screen
+     * Swipe from a specific screen position to another
      *
-     * @param startx starting x coordinate
-     * @param starty starting y coordinate
-     * @param endx   ending x coordinate
-     * @param endy   ending y coordinate take
+     * @param startx start x coordinate
+     * @param starty start y coordinate
+     * @param endx   end x coordinate
+     * @param endy   end y coordinate
      */
     public void swipe(double startx, double starty, double endx, double endy, int duration) {
 
@@ -69,7 +69,9 @@ public class MobileActionsImpl implements MobileActions {
     }
 
     /**
-     * Closes the app provided in the capabilities when the session is created
+     * Take a screenshot and it is stored in a file
+     *
+     * @param destFile file where the screenshot will be stored
      */
     public void getScreenshot(String destFile) {
         File srcFiler = appiumDriver.getScreenshotAs(OutputType.FILE);
@@ -85,7 +87,7 @@ public class MobileActionsImpl implements MobileActions {
     }
 
     /**
-     * Swipes on the screen from right to left
+     * Swipe on the screen from right to left
      *
      * @param times number of times to perform the swipe gesture
      * @param wait  time to wait between swipes
@@ -95,7 +97,7 @@ public class MobileActionsImpl implements MobileActions {
     }
 
     /**
-     * Swipes on the screen from left to right
+     * Swipe on the screen from left to right
      *
      * @param times number of times to perform the swipe gesture
      * @param wait  time to wait between swipes
@@ -105,7 +107,7 @@ public class MobileActionsImpl implements MobileActions {
     }
 
     /**
-     * Swipes on the screen from left to right
+     * Swipe on the screen from left to top
      *
      * @param times number of times to perform the swipe gesture
      * @param wait  time to wait between swipes
@@ -115,7 +117,7 @@ public class MobileActionsImpl implements MobileActions {
     }
 
     /**
-     * Swipes on the screen from left to right
+     * Swipe on the screen from left to down
      *
      * @param times number of times to perform the swipe gesture
      * @param wait  time to wait between swipes
@@ -125,7 +127,7 @@ public class MobileActionsImpl implements MobileActions {
     }
 
     /**
-     * Gets a screenshot when a scenario fail
+     * Get a screenshot when a scenario fail
      *
      * @param scenario scenario executed
      */
@@ -137,36 +139,36 @@ public class MobileActionsImpl implements MobileActions {
     }
 
     /**
-     * Scrolls Down 'N' times
+     * Scroll down a number of times specified as argument
      *
-     * @param times number of times to scroll
+     * @param times number of times to scroll down
      */
     public void scrollDown(int times) {
         IntStream.rangeClosed(1, times).forEach(i -> swipe(0.5, 0.8, 0.5, 0.4, 1));
     }
 
     /**
-     * Scrolls Up 'N' times
+     * Scroll up a number of times specifies as argument
      *
-     * @param times number of times to scroll
+     * @param times number of times to scroll up
      */
     public void scrollUp(int times) {
         IntStream.rangeClosed(1, times).forEach(i -> swipe(0.5, 0.3, 0.5, 0.9, 1));
     }
 
     /**
-     * Taps on the center of the screen
+     * Tap on the center of the screen
      */
-    public void tapInCenter() {
+    public void tapOnCenter() {
         int screenWidth = (appiumDriver.manage().window().getSize().width);
         int screenHeight = (appiumDriver.manage().window().getSize().height);
         tap(screenWidth / 2, screenHeight / 2);
     }
 
     /**
-     * Taps on the left side of the screen
+     * Tap on the left side of the screen
      */
-    public void tapInLeft() {
+    public void tapOnLeft() {
         int screenWidth = appiumDriver.manage().window().getSize().width;
         int screenHeight = appiumDriver.manage().window().getSize().height;
         tap(screenWidth / 6, screenHeight / 2);
@@ -174,9 +176,9 @@ public class MobileActionsImpl implements MobileActions {
     }
 
     /**
-     * Taps on the right side of the screen
+     * Tap on the right side of the screen
      */
-    public void tapInRight() {
+    public void tapOnRight() {
         int screenWidth = appiumDriver.manage().window().getSize().width;
         int screenHeight = appiumDriver.manage().window().getSize().height;
         tap((screenWidth / 6) * 5, screenHeight / 2);
@@ -184,9 +186,9 @@ public class MobileActionsImpl implements MobileActions {
     }
 
     /**
-     * Taps on the right side of the screen
+     * Tap on the top side of the screen
      */
-    public void tapInTop() {
+    public void tapOnTop() {
         int screenWidth = appiumDriver.manage().window().getSize().width;
         int screenHeight = appiumDriver.manage().window().getSize().height;
         tap(screenWidth / 2, (screenHeight / 6) * 5);
@@ -194,16 +196,16 @@ public class MobileActionsImpl implements MobileActions {
     }
 
     /**
-     * Taps on the right side of the screen
+     * Tap on the bottom side of the screen
      */
-    public void tapInDown() {
+    public void tapOnBottom() {
         int screenWidth = appiumDriver.manage().window().getSize().width;
         int screenHeight = appiumDriver.manage().window().getSize().height;
         tap(screenWidth / 2, screenHeight / 6);
     }
 
     /**
-     * Taps on a specific position of the screen for a long while (some seconds)
+     * Tap on a specific position of the screen for a long while (some seconds)
      *
      * @param x x coordinate of the screen position
      * @param y y coordinate of the screen position

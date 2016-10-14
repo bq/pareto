@@ -102,28 +102,28 @@ public class IOSDriver extends io.appium.java_client.ios.IOSDriver implements Mo
     }
 
     @Override
-    public void tapInCenter() {
-        mobileActions.tapInCenter();
+    public void tapOnCenter() {
+        mobileActions.tapOnCenter();
     }
 
     @Override
-    public void tapInLeft() {
-        mobileActions.tapInLeft();
+    public void tapOnLeft() {
+        mobileActions.tapOnLeft();
     }
 
     @Override
-    public void tapInRight() {
-        mobileActions.tapInRight();
+    public void tapOnRight() {
+        mobileActions.tapOnRight();
     }
 
     @Override
-    public void tapInTop() {
-        mobileActions.tapInTop();
+    public void tapOnTop() {
+        mobileActions.tapOnTop();
     }
 
     @Override
-    public void tapInDown() {
-        mobileActions.tapInDown();
+    public void tapOnBottom() {
+        mobileActions.tapOnBottom();
     }
 
     @Override

@@ -13,7 +13,7 @@ public interface IOSAppConfig extends ParetoAppConfig{
     @Config.Key("binary.path")
     String binary_path();
 
-    //IOS
+    //iOS
     @Config.Key("ios.calendarFormat")
     String ios_calendarFormat();
 
