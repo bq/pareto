@@ -78,7 +78,6 @@ public class MobileActionsImpl implements MobileActions {
             File file = new File(destFile);
             FileUtils.copyFile(srcFiler, file);
             srcFiler.delete();//Avoid memory leak
-            file = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
