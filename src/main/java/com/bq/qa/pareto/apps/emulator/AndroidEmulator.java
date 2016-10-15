@@ -67,7 +67,7 @@ public class AndroidEmulator {
                 InputStreamReader(androidEmulator.getInputStream()));
 
         // read the output from the command
-        String s = null;
+        String s;
         while ((s = stdInput.readLine()) != null) {
                 initialized = s.equals("1");
         }
