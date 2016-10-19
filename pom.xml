@@ -31,6 +31,16 @@
         <cucumber.junit.version>1.2.0</cucumber.junit.version>
         <maven-cucumber-reporting.version>0.1.0</maven-cucumber-reporting.version>
         <owner.version>1.0.9</owner.version>
+        <im4java.version>1.4.0</im4java.version>
+        <cucumber-guice.version>1.2.2</cucumber-guice.version>
+        <guice.version>3.0</guice.version>
+        <log4j-api.version>2.3</log4j-api.version>
+        <log4j-core.version>2.3</log4j-core.version>
+        <java-client.version>4.1.2</java-client.version>
+        <mockito-all.version>2.0.2-beta</mockito-all.version>
+        <selenium-server.version>2.53.0</selenium-server.version>
+        <webdrivermanager.version>1.4.3</webdrivermanager.version>
+        <guava.version>19.0</guava.version>
     </properties>
 
     
@@ -68,58 +78,58 @@
         <dependency>
             <groupId>org.im4java</groupId>
             <artifactId>im4java</artifactId>
-            <version>1.4.0</version>
+            <version>${im4java.version}</version>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-guice</artifactId>
-            <version>1.2.2</version>
+            <version>${cucumber-guice.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
-            <version>3.0</version>
+            <version>${guice.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.3</version>
+            <version>${log4j-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.3</version>
+            <version>${log4j-core.version}</version>
         </dependency>
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
-            <version>4.1.2</version>
+            <version>${java-client.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <version>2.0.2-beta</version>
+            <version>${mockito-all.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
-            <version>2.53.0</version>
+            <version>${selenium-server.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.53.0</version>
+            <version>${selenium-server.version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>1.4.3</version>
+            <version>${webdrivermanager.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>19.0</version>
+            <version>${guava.version}</version>
         </dependency>
     </dependencies>
 
