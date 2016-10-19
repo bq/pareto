@@ -46,12 +46,19 @@ public interface AndroidAppConfig extends ParetoAppConfig{
     @Config.Key("android.enablePerformanceLogging")
     Boolean android_enablePerformanceLogging();
 
+    @Config.DefaultValue("5037")
+    @Config.Key("android.adbPort")
+    String android_adbPord();
+
     @Config.DefaultValue("30")
     @Config.Key("android.androidDeviceReadyTimeout")
     String android_androidDeviceReadyTimeout();
 
     @Config.Key("android.androidDeviceSocket")
     String android_androidDeviceSocket();
+
+    @Config.Key("android.androidInstallTimeout")
+    String android_androidInstallTimeout();
 
     @Config.Key("android.avd")
     String android_avd();
@@ -132,15 +139,28 @@ public interface AndroidAppConfig extends ParetoAppConfig{
     @Config.Key("android.chromeOptions")
     String android_chromeOptions();
 
+    @Config.DefaultValue("false")
+    @Config.Key("android.recreateChromeDriverSessions")
+    Boolean android_recreateChromeDriverSessions();
+
+    @Config.DefaultValue("false")
+    @Config.Key("android.nativeWebScreenshot")
+    Boolean android_nativeWebScreenshot();
+
+    @Config.DefaultValue("/data/local/tmp")
+    @Config.Key("android.androidScreenshotPath")
+    String android_androidScreenshotPath();
+
+    @Config.Key("android.selendroidPort")
+    String android_selendroidPort();
+
     @Config.DefaultValue("android")
     @Key("appium.platformName")
     String appium_platformName();
 
-    @DefaultValue("5.0")
     @Key("appium.platformVersion")
     String appium_platformVersion();
 
-    @DefaultValue("E5")
     @Key("appium.deviceName")
     String appium_deviceName();
 }

@@ -59,13 +59,9 @@ public interface ParetoAppConfig extends Config {
     Boolean appium_fullReset();
 
     //PARETO CONFIG
-    @DefaultValue("/usr/local/avm/versions")
+    @DefaultValue("/usr/local/bin/appium")
     @Key("appium.bin")
     String appium_bin();
-
-    @DefaultValue("1.5.2")
-    @Key("appium.version")
-    String appium_version();
 
     @DefaultValue("127.0.0.1")
     @Key("appium.ip")
