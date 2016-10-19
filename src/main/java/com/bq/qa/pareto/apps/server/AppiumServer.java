@@ -40,7 +40,7 @@ public class AppiumServer {
         ServerArgument options = () -> ParetoApp.getConfig().appium_options();
         String log_level = ParetoApp.getConfig().appium_log_level();
         File logFile = new File(FileHandler.getLogPath());
-        if(!UDID.equals("default"))
+        if(!"default".equals(UDID))
             desiredCapabilities.setCapability(MobileCapabilityType.UDID,UDID);
 
         AppiumServiceBuilder builder = new AppiumServiceBuilder()
