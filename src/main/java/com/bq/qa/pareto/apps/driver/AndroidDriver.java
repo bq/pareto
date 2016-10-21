@@ -5,7 +5,6 @@ import com.bq.qa.pareto.apps.driver.actions.MobileActions;
 import com.bq.qa.pareto.apps.driver.actions.MobileActionsImpl;
 import com.bq.qa.pareto.apps.driver.connection.AndroidNetwork;
 import com.bq.qa.pareto.apps.driver.connection.Network;
-import com.bq.qa.pareto.apps.driver.context.Context;
 import cucumber.api.Scenario;
 import io.appium.java_client.TouchAction;
 import org.openqa.selenium.Capabilities;
@@ -25,7 +24,6 @@ public class AndroidDriver extends io.appium.java_client.android.AndroidDriver i
 
     private MobileActions mobileActions;
     private AndroidNetwork androidNetwork;
-    private Context context;
 
     /**
      * Constructor
@@ -37,7 +35,6 @@ public class AndroidDriver extends io.appium.java_client.android.AndroidDriver i
         super(remoteAddress, desiredCapabilities);
         this.mobileActions = new MobileActionsImpl(this);
         this.androidNetwork = new AndroidNetwork(this);
-        this.context = new Context(this);
     }
 
     @Override

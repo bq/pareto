@@ -81,6 +81,7 @@ public class DriverFactory {
         setCapability(capabilities, MobileCapabilityType.PLATFORM_VERSION, ParetoApp.getIOSConfig().appium_platformVersion());
         setCapability(capabilities, MobileCapabilityType.DEVICE_NAME, ParetoApp.getIOSConfig().appium_deviceName());
         setCapability(capabilities, MobileCapabilityType.PLATFORM_NAME, ParetoApp.getIOSConfig().appium_platformName());
+
         setCapability(capabilities, IOSMobileCapabilityType.CALENDAR_FORMAT, ParetoApp.getIOSConfig().ios_calendarFormat());
         setCapability(capabilities, IOSMobileCapabilityType.BUNDLE_ID, ParetoApp.getIOSConfig().ios_bundleId());
         setCapability(capabilities, IOSMobileCapabilityType.LAUNCH_TIMEOUT, ParetoApp.getIOSConfig().ios_launchTimeout());
@@ -108,6 +109,7 @@ public class DriverFactory {
         setCapability(capabilities, MobileCapabilityType.PLATFORM_VERSION, ParetoApp.getAndroidConfig().appium_platformVersion());
         setCapability(capabilities, MobileCapabilityType.DEVICE_NAME, ParetoApp.getAndroidConfig().appium_deviceName());
         setCapability(capabilities, MobileCapabilityType.PLATFORM_NAME, ParetoApp.getAndroidConfig().appium_platformName());
+
         setCapability(capabilities, AndroidMobileCapabilityType.APP_ACTIVITY, ParetoApp.getAndroidConfig().android_appActivity());
         setCapability(capabilities,AndroidMobileCapabilityType.APP_PACKAGE, ParetoApp.getAndroidConfig().android_appPackage());
         setCapability(capabilities,AndroidMobileCapabilityType.APP_WAIT_ACTIVITY, ParetoApp.getAndroidConfig().android_appWaitActivity());
@@ -116,9 +118,11 @@ public class DriverFactory {
         setCapability(capabilities,AndroidMobileCapabilityType.ANDROID_COVERAGE, ParetoApp.getAndroidConfig().android_androidCoverage());
         setCapability(capabilities,AndroidMobileCapabilityType.ENABLE_PERFORMANCE_LOGGING, ParetoApp.getAndroidConfig().android_enablePerformanceLogging());
         setCapability(capabilities,AndroidMobileCapabilityType.ANDROID_DEVICE_READY_TIMEOUT, ParetoApp.getAndroidConfig().android_androidDeviceReadyTimeout());
+        setCapability(capabilities,AndroidMobileCapabilityType.ADB_PORT, ParetoApp.getAndroidConfig().android_adbPord());
         setCapability(capabilities,AndroidMobileCapabilityType.ANDROID_DEVICE_SOCKET, ParetoApp.getAndroidConfig().android_androidDeviceSocket());
+        setCapability(capabilities,AndroidMobileCapabilityType.ANDROID_INSTALL_TIMEOUT, ParetoApp.getAndroidConfig().android_androidInstallTimeout());
         setCapability(capabilities,AndroidMobileCapabilityType.AVD, ParetoApp.getAndroidConfig().android_avd());
-        setCapability(capabilities,AndroidMobileCapabilityType.ANDROID_DEVICE_READY_TIMEOUT, ParetoApp.getAndroidConfig().android_avdLaunchTimeout());
+        setCapability(capabilities,AndroidMobileCapabilityType.AVD_LAUNCH_TIMEOUT, ParetoApp.getAndroidConfig().android_avdLaunchTimeout());
         setCapability(capabilities,AndroidMobileCapabilityType.AVD_READY_TIMEOUT, ParetoApp.getAndroidConfig().android_avdReadyTimeout());
         setCapability(capabilities,AndroidMobileCapabilityType.AVD_ARGS, ParetoApp.getAndroidConfig().android_avdArgs());
         setCapability(capabilities,AndroidMobileCapabilityType.USE_KEYSTORE, ParetoApp.getAndroidConfig().android_useKeystore());
@@ -138,7 +142,10 @@ public class DriverFactory {
         setCapability(capabilities,AndroidMobileCapabilityType.NO_SIGN, ParetoApp.getAndroidConfig().android_noSign());
         setCapability(capabilities,AndroidMobileCapabilityType.IGNORE_UNIMPORTANT_VIEWS, ParetoApp.getAndroidConfig().android_ignoreUnimportantViews());
         setCapability(capabilities,AndroidMobileCapabilityType.DISABLE_ANDROID_WATCHERS, ParetoApp.getAndroidConfig().android_disableAndroidWatchers());
-//        setCapability(capabilities,AndroidMobileCapabilityType.CHROME_OPTIONS, ParetoApp.getAndroidConfig().android_chromeOptions());
+        setCapability(capabilities,AndroidMobileCapabilityType.RECREATE_CHROME_DRIVER_SESSIONS, ParetoApp.getAndroidConfig().android_recreateChromeDriverSessions());
+        setCapability(capabilities,AndroidMobileCapabilityType.NATIVE_WEB_SCREENSHOT, ParetoApp.getAndroidConfig().android_nativeWebScreenshot());
+        setCapability(capabilities,AndroidMobileCapabilityType.ANDROID_SCREENSHOT_PATH, ParetoApp.getAndroidConfig().android_androidScreenshotPath());
+        setCapability(capabilities,AndroidMobileCapabilityType.SELENDROID_PORT, ParetoApp.getAndroidConfig().android_selendroidPort());
     }
 
     private void setCapability(DesiredCapabilities cap, String key, Object value){

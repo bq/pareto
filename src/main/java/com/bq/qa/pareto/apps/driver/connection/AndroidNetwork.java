@@ -2,7 +2,7 @@ package com.bq.qa.pareto.apps.driver.connection;
 
 import com.bq.qa.pareto.apps.driver.AndroidDriver;
 import com.bq.qa.pareto.apps.util.ParetoAppLogger;
-import io.appium.java_client.NetworkConnectionSetting;
+import io.appium.java_client.android.Connection;
 import org.apache.logging.log4j.Logger;
 
 /**
@@ -18,12 +18,6 @@ public class AndroidNetwork implements Network {
     private AndroidDriver androidDriver;
     private Logger paretoLogger;
 
-    private static final int NO_CONEXIONS = 0;
-    private static final int AIRPLANE_MODE = 1;
-    private static final int WIFI_ONLY = 2;
-    private static final int DATA_ONLY = 4;
-    private static final int ALL_CONEXIONS = 6;
-
     /**
      * Constructor
      *
@@ -35,57 +29,57 @@ public class AndroidNetwork implements Network {
     }
 
     /**
-     * @see Network#turnOnWifi()
+     * @see Connection#WIFI
      */
     @Override
     public void turnOnWifi() {
         paretoLogger.debug("Turning on Wifi");
-        androidDriver.setNetworkConnection(new NetworkConnectionSetting(WIFI_ONLY));
+        androidDriver.setConnection(Connection.WIFI);
     }
 
     /**
-     * @see Network#turnOffWifi()
+     * @see Connection#WIFI
      */
     @Override
     public void turnOffWifi() {
         paretoLogger.debug("Turning off Wifi");
-        androidDriver.setNetworkConnection(new NetworkConnectionSetting(DATA_ONLY));
+        androidDriver.setConnection(Connection.DATA);
     }
 
     /**
-     * @see Network#turnOnAirPlaneMode()
+     * @see Connection#AIRPLANE
      */
     @Override
     public void turnOnAirPlaneMode() {
         paretoLogger.debug("Turning on Air Plane Mode");
-        androidDriver.setNetworkConnection(new NetworkConnectionSetting(AIRPLANE_MODE));
+        androidDriver.setConnection(Connection.AIRPLANE);
     }
 
     /**
-     * @see Network#turnOffAirPlaneMode()
+     * @see Connection#AIRPLANE
      */
     @Override
     public void turnOffAirPlaneMode() {
         paretoLogger.debug("Turning off Air Plane Mode");
-        androidDriver.setNetworkConnection(new NetworkConnectionSetting(ALL_CONEXIONS));
+        androidDriver.setConnection(Connection.DATA);
     }
 
     /**
-     * @see Network#turnOnData()
+     * @see Connection#DATA
      */
     @Override
     public void turnOnData() {
         paretoLogger.debug("Turning on Data");
-        androidDriver.setNetworkConnection(new NetworkConnectionSetting(DATA_ONLY));
+        androidDriver.setConnection(Connection.DATA);
     }
 
     /**
-     * @see Network#turnOffData()
+     * @see Connection#NONE
      */
     @Override
     public void turnOffData() {
         paretoLogger.debug("Turning off Data");
-        androidDriver.setNetworkConnection(new NetworkConnectionSetting(AIRPLANE_MODE));
+        androidDriver.setConnection(Connection.NONE);
     }
 
 
@@ -94,9 +88,7 @@ public class AndroidNetwork implements Network {
      */
     @Override
     public boolean isAirPlaneModeEnabled() {
-        boolean isAirPlaneModeEnabled = androidDriver.getNetworkConnection().airplaneModeEnabled();
-        paretoLogger.debug("Is Air Plane Mode enabled ? : " + isAirPlaneModeEnabled);
-        return isAirPlaneModeEnabled;
+        return androidDriver.getConnection().compareTo(Connection.AIRPLANE)==0;
     }
 
     /**
@@ -104,9 +96,7 @@ public class AndroidNetwork implements Network {
      */
     @Override
     public boolean isDataEnabled() {
-        boolean isDataEnabled = androidDriver.getNetworkConnection().dataEnabled();
-        paretoLogger.debug("Is data enabled ? : " + isDataEnabled);
-        return isDataEnabled;
+        return androidDriver.getConnection().compareTo(Connection.DATA)==0;
     }
 
     /**
@@ -114,8 +104,6 @@ public class AndroidNetwork implements Network {
      */
     @Override
     public boolean isWifiEnabled() {
-        boolean isWifiEnabled = androidDriver.getNetworkConnection().wifiEnabled();
-        paretoLogger.debug("Is Wifi enabled ? : " + isWifiEnabled);
-        return isWifiEnabled;
+        return androidDriver.getConnection().compareTo(Connection.WIFI)==0;
     }
 }

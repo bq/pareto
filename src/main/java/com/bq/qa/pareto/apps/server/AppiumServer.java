@@ -98,9 +98,8 @@ public class AppiumServer {
      * Setups the version on an Appium command
      */
     private String getAppiumPath() {
-        String version = ParetoApp.getConfig().appium_version();
         String baseCommand = ParetoApp.getConfig().appium_bin();
-        return baseCommand + "/" + version + "/node_modules/appium/build/lib/main.js";
+        return baseCommand;
     }
 
     /**
