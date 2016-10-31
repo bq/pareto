@@ -6,7 +6,7 @@
 
     <groupId>com.bq.qa</groupId>
     <artifactId>pareto</artifactId>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.2.0</version>
     <packaging>pom</packaging>
     <name>pareto</name>
     <url>https://github.com/bq/pareto</url>
@@ -43,7 +43,7 @@
         <guava.version>19.0</guava.version>
     </properties>
 
-    
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
