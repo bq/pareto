@@ -28,4 +28,5 @@ public class HomePage {
     public void accessToAnimation(){
         menuList.get(1).click();
     }
+
 }

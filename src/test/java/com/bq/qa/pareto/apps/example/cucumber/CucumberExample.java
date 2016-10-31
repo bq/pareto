@@ -2,16 +2,12 @@ package com.bq.qa.pareto.apps.example.cucumber;
 
 import com.bq.qa.pareto.apps.ParetoApp;
 import com.bq.qa.pareto.apps.driver.AndroidDriver;
-import com.bq.qa.pareto.apps.example.di.Injector;
 import com.bq.qa.pareto.apps.server.AppiumServer;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
-
-import static com.bq.qa.pareto.apps.ParetoAppTest.UDID_ANDROID;
-
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -21,25 +17,23 @@ import static com.bq.qa.pareto.apps.ParetoAppTest.UDID_ANDROID;
                 "json:target/test/target_json/cucumber.json",
                 "junit:target/test/taget_junit/cucumber.xml"})
 public class CucumberExample {
-
-    ParetoApp paretoApp;
+    public static final String UDID_ANDROID = "default";
+    ParetoApp<AndroidDriver> paretoApp;
     AppiumServer appiumServer;
     AndroidDriver androidDriver;
 
 
     @Before
     public  void beforeScenario() throws Exception {
-        paretoApp = Injector.paretoApp();
-
+        paretoApp = ParetoApp.<AndroidDriver>getInstance();
         appiumServer= paretoApp.createAppiumServer(UDID_ANDROID, ParetoApp.ANDROID);
-        androidDriver = (AndroidDriver) paretoApp.createDriver(appiumServer.getURL(),ParetoApp.ANDROID);
-
+        androidDriver = paretoApp.createDriver(appiumServer.getURL(),ParetoApp.ANDROID);
         androidDriver.resetApp();
     }
 
     @After
     public  void afterScenario() throws Exception {
-        androidDriver.close();
+        androidDriver.quit();
         appiumServer.stop();
     }
 }

@@ -16,6 +16,7 @@ import java.net.URL;
 public class ParetoApp<D extends AppiumDriver> {
     public static final String IOS = "ios";
     public static final String ANDROID = "android";
+    private static ParetoApp paretoApp;
 
     private AppiumManager appiumManager;
     private static ParetoAppConfig paretoAppConfig = ConfigFactory.create(ParetoAppConfig.class);
@@ -24,11 +25,17 @@ public class ParetoApp<D extends AppiumDriver> {
 
     private D driver;
 
-    public ParetoApp() {
+    private ParetoApp() {
         appiumManager = new AppiumManager();
         paretoAppConfig = ConfigFactory.create(ParetoAppConfig.class);
         androidAppConfig = ConfigFactory.create(AndroidAppConfig.class);
         iosAppConfig = ConfigFactory.create(IOSAppConfig.class);
+    }
+
+    public static ParetoApp getInstance(){
+        if(paretoApp==null)
+            paretoApp = new ParetoApp<>();
+        return paretoApp;
     }
 
     public static ParetoAppConfig getConfig() {

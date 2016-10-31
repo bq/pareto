@@ -1,6 +1,7 @@
 package com.bq.qa.pareto.apps.example.cucumber.steps;
 
-import com.bq.qa.pareto.apps.example.di.Injector;
+import com.bq.qa.pareto.apps.ParetoApp;
+import com.bq.qa.pareto.apps.driver.AndroidDriver;
 import com.bq.qa.pareto.apps.example.pages.AnimationsPage;
 import cucumber.api.java.en.Then;
 
@@ -12,7 +13,7 @@ public class StepsDef2 {
 
 
     public StepsDef2() {
-        this.animationsPage = new AnimationsPage(Injector.paretoApp());
+        this.animationsPage = new AnimationsPage(ParetoApp.<AndroidDriver>getInstance());
     }
 
     @Then("^Bounce ball$")
@@ -20,4 +21,10 @@ public class StepsDef2 {
         animationsPage.accessToBouncingBalls();
         animationsPage.bounceBall();
     }
+
+    @Then("^Error$")
+    public void error() {
+        animationsPage.testError();
+    }
+
 }
