@@ -42,7 +42,6 @@ public class ParetoApp<D extends AppiumDriver> {
     }
 
     public static ParetoAppConfig getConfig() {
-
         return paretoAppConfig;
     }
 

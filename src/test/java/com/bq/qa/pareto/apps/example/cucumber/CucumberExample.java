@@ -11,11 +11,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        format = {
-                "pretty",
-                "html:target/test/cucumber",
-                "json:target/test/target_json/cucumber.json",
-                "junit:target/test/taget_junit/cucumber.xml"})
+        plugin = {"pretty"})
 public class CucumberExample {
     public static final String UDID_ANDROID = "default";
     ParetoApp<AndroidDriver> paretoApp;
