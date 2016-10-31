@@ -1,18 +1,22 @@
 package com.bq.qa.pareto.apps.driver;
 
 
+import com.bq.qa.pareto.apps.ParetoApp;
 import com.bq.qa.pareto.apps.driver.actions.MobileActions;
 import com.bq.qa.pareto.apps.driver.actions.MobileActionsImpl;
+import com.bq.qa.pareto.apps.driver.capabilities.AndroidCapabilities;
 import com.bq.qa.pareto.apps.driver.connection.AndroidNetwork;
 import com.bq.qa.pareto.apps.driver.connection.Network;
+import com.bq.qa.pareto.apps.util.ParetoAppLogger;
 import cucumber.api.Scenario;
 import io.appium.java_client.TouchAction;
-import org.openqa.selenium.Capabilities;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p/>
@@ -20,21 +24,24 @@ import java.net.URL;
  * <p/>
  *
  */
-public class AndroidDriver extends io.appium.java_client.android.AndroidDriver implements MobileActions {
+public class AndroidDriver extends io.appium.java_client.android.AndroidDriver implements MobileActions{
 
     private MobileActions mobileActions;
     private AndroidNetwork androidNetwork;
+    private Logger paretoLogger;
 
     /**
      * Constructor
      *
      * @param remoteAddress       emote address
-     * @param desiredCapabilities desired capabilities
      */
-    public AndroidDriver(URL remoteAddress, Capabilities desiredCapabilities) {
-        super(remoteAddress, desiredCapabilities);
+    public AndroidDriver(URL remoteAddress) {
+        super(remoteAddress, new AndroidCapabilities().getDesiredCapabilities());
         this.mobileActions = new MobileActionsImpl(this);
         this.androidNetwork = new AndroidNetwork(this);
+        this.paretoLogger = ParetoAppLogger.getLogger();
+
+        manage().timeouts().implicitlyWait(ParetoApp.getConfig().driver_timeout(), TimeUnit.SECONDS);
     }
 
     @Override

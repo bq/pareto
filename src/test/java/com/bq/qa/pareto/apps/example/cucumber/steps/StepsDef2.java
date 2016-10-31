@@ -1,23 +1,22 @@
 package com.bq.qa.pareto.apps.example.cucumber.steps;
 
+import com.bq.qa.pareto.apps.example.di.Injector;
 import com.bq.qa.pareto.apps.example.pages.AnimationsPage;
 import cucumber.api.java.en.Then;
-
-import javax.inject.Inject;
 
 
 public class StepsDef2 {
 
-    private AnimationsPage animationsPage;
+
+    private final AnimationsPage animationsPage;
 
 
-    @Inject
-    public StepsDef2(AnimationsPage animationsPage){
-        this.animationsPage = animationsPage;
+    public StepsDef2() {
+        this.animationsPage = new AnimationsPage(Injector.paretoApp());
     }
 
     @Then("^Bounce ball$")
-    public void launch_app(){
+    public void launch_app() {
         animationsPage.accessToBouncingBalls();
         animationsPage.bounceBall();
     }

@@ -1,7 +1,9 @@
 package com.bq.qa.pareto.apps.driver;
 
+import com.bq.qa.pareto.apps.ParetoApp;
 import com.bq.qa.pareto.apps.driver.actions.MobileActions;
 import com.bq.qa.pareto.apps.driver.actions.MobileActionsImpl;
+import com.bq.qa.pareto.apps.driver.capabilities.IOSCapabilities;
 import com.bq.qa.pareto.apps.driver.connection.IOSNetwork;
 import com.bq.qa.pareto.apps.driver.connection.Network;
 import com.bq.qa.pareto.apps.driver.context.Context;
@@ -10,6 +12,7 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebElement;
 
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p/>
@@ -26,14 +29,13 @@ public class IOSDriver extends io.appium.java_client.ios.IOSDriver implements Mo
      * Constructor
      *
      * @param remoteAddress       remote address
-     * @param desiredCapabilities desired capabilities
      */
-    public IOSDriver(URL remoteAddress, Capabilities desiredCapabilities) {
-        super(remoteAddress, desiredCapabilities);
+    public IOSDriver(URL remoteAddress) {
+        super(remoteAddress, new IOSCapabilities().getIosDesiredCapabilities());
         this.mobileActions = new MobileActionsImpl(this);
         this.iosNetwork= new IOSNetwork(this);
         this.context = new Context(this);
-
+        manage().timeouts().implicitlyWait(ParetoApp.getConfig().driver_timeout(), TimeUnit.SECONDS);
     }
 
     @Override

@@ -4,44 +4,66 @@ import com.bq.qa.pareto.apps.config.AndroidAppConfig;
 import com.bq.qa.pareto.apps.config.IOSAppConfig;
 import com.bq.qa.pareto.apps.config.ParetoAppConfig;
 import com.bq.qa.pareto.apps.driver.AndroidDriver;
-import com.bq.qa.pareto.apps.driver.DriverFactory;
 import com.bq.qa.pareto.apps.driver.IOSDriver;
 import com.bq.qa.pareto.apps.server.AppiumManager;
 import com.bq.qa.pareto.apps.server.AppiumServer;
+import io.appium.java_client.AppiumDriver;
 import org.aeonbits.owner.ConfigFactory;
 
-public class ParetoApp {
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class ParetoApp<D extends AppiumDriver> {
+    public static final String IOS = "ios";
+    public static final String ANDROID = "android";
 
     private AppiumManager appiumManager;
-    private DriverFactory driverFactory;
+    private static ParetoAppConfig paretoAppConfig = ConfigFactory.create(ParetoAppConfig.class);
+    private static AndroidAppConfig androidAppConfig = ConfigFactory.create(AndroidAppConfig.class);
+    private static IOSAppConfig iosAppConfig= ConfigFactory.create(IOSAppConfig.class);
 
-    private static ParetoAppConfig CFG =ConfigFactory.create(ParetoAppConfig.class);
+    private D driver;
 
-    private static AndroidAppConfig CFG_ANDROID = ConfigFactory.create(AndroidAppConfig.class);
-    private static IOSAppConfig CFG_IOS = ConfigFactory.create(IOSAppConfig.class);
-
-    public ParetoApp(){
+    public ParetoApp() {
         appiumManager = new AppiumManager();
-        driverFactory = new DriverFactory();
+        paretoAppConfig = ConfigFactory.create(ParetoAppConfig.class);
+        androidAppConfig = ConfigFactory.create(AndroidAppConfig.class);
+        iosAppConfig = ConfigFactory.create(IOSAppConfig.class);
     }
 
-    public static ParetoAppConfig getConfig(){
-      return CFG;
+    public static ParetoAppConfig getConfig() {
+        return paretoAppConfig;
     }
 
-    public static AndroidAppConfig getAndroidConfig(){return CFG_ANDROID;}
-
-    public static IOSAppConfig getIOSConfig(){return CFG_IOS;}
-
-    public AndroidDriver getAndroidDriver(String url){
-        return driverFactory.createAndroidDriver(url);
+    public D createDriver(String url,String so){
+        driver =null;
+        try {
+            if(so.equals(ANDROID)){
+                driver = (D) new AndroidDriver(new URL(url));
+            }
+            else{
+                driver = (D) new IOSDriver(new URL(url));
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return driver;
     }
 
-    public IOSDriver getiOSDriver(String url){
-        return driverFactory.createiOSDriver(url);
+
+    public D getDriver(){
+        return driver;
     }
 
-    public AppiumServer getAppiumServer(String UDID, String so){
-        return  appiumManager.startAppiumServer(UDID,so);
+    public static AndroidAppConfig getAndroidConfig() {
+        return androidAppConfig;
+    }
+
+    public static IOSAppConfig getIOSConfig() {
+        return iosAppConfig;
+    }
+
+    public AppiumServer createAppiumServer(String UDID, String so) {
+        return appiumManager.startAppiumServer(UDID, so);
     }
 }

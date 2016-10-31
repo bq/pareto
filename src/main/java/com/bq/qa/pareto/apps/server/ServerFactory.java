@@ -5,9 +5,10 @@ import com.bq.qa.pareto.apps.config.ParetoAppConfig;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import static com.bq.qa.pareto.apps.ParetoApp.ANDROID;
+
 public class ServerFactory {
-    public static final String IOS = "ios";
-    public static final String ANDROID = "android";
+
 
     public static AppiumServer initServer(String UDID, String SO){
         if(SO.equals(ANDROID)){
