@@ -57,7 +57,6 @@ public class AndroidEmulator {
         }
     }
 
-
     private boolean isInitialized() throws IOException {
         boolean initialized = false;
         String command= adbBin+" -s "+ "emulator-"+ParetoApp.getAndroidConfig().android_emulatorport()+" shell getprop sys.boot_completed";

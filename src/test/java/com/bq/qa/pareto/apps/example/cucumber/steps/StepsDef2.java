@@ -22,9 +22,4 @@ public class StepsDef2 {
         animationsPage.bounceBall();
     }
 
-    @Then("^Error$")
-    public void error() {
-        animationsPage.testError();
-    }
-
 }
