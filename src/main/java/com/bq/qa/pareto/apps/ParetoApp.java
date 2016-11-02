@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class ParetoApp<D extends AppiumDriver,T extends ParetoAppConfig> {
+public class ParetoApp<D extends AppiumDriver, C extends ParetoAppConfig> {
     public static final String IOS = "ios";
     public static final String ANDROID = "android";
     private static ParetoApp paretoApp;
@@ -23,9 +23,9 @@ public class ParetoApp<D extends AppiumDriver,T extends ParetoAppConfig> {
     private AppiumManager appiumManager;
 
     private D driver;
-    private T config;
+    private C config;
 
-    private ParetoApp(Class<? extends T> klass) {
+    private ParetoApp(Class<? extends C> klass) {
         appiumManager = new AppiumManager();
         config = ConfigFactory.create(klass);
     }
@@ -36,7 +36,7 @@ public class ParetoApp<D extends AppiumDriver,T extends ParetoAppConfig> {
         return paretoApp;
     }
 
-    public T getConfig(){
+    public C getConfig(){
         return config;
     }
 

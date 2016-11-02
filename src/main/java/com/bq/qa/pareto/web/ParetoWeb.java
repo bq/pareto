@@ -13,28 +13,29 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class ParetoWeb<D extends BrowserDriver> {
+public class ParetoWeb<D extends BrowserDriver,C extends ParetoWebConfig> {
 
     private static ParetoWeb paretoWeb;
     private SeleniumServerManager seleniumServerManager;
-
-    public enum BROWSER {CHROME, FIREFOX, SAFARI}
-
-    private static final ParetoWebConfig CFG = ConfigFactory.create(ParetoWebConfig.class);
-
-    public static ParetoWebConfig getConfig() {
-        return CFG;
-    }
+    public enum BROWSER {CHROME, FIREFOX, SAFARI;}
 
     public D driver;
+    private C config;
 
+    public ParetoWeb(Class<? extends C> klass){
+        config = ConfigFactory.create(klass);
+    }
+    
 
-    public static ParetoWeb getInstance(){
+    public static ParetoWeb getInstance(Class<? extends ParetoWebConfig> klass){
         if(paretoWeb==null)
-            paretoWeb = new ParetoWeb<>();
+            paretoWeb = new ParetoWeb<>(klass);
         return paretoWeb;
     }
-
+    
+    public C getConfig(){
+        return config;
+    }
 
     public SeleniumServerManager getLocalServer(){
         return seleniumServerManager;
@@ -65,7 +66,7 @@ public class ParetoWeb<D extends BrowserDriver> {
             URL remoteAddress = new URL(url);
             switch (browser) {
                 case CHROME:
-                    driver = (D) new ChromeDriver(remoteAddress, new ChromeCapabilities().getDesiredCapabilities());
+                    driver = (D) new ChromeDriver(remoteAddress, new ChromeCapabilities(config).getDesiredCapabilities());
                     break;
                 case FIREFOX:
                     driver = (D) new FirefoxDriver(remoteAddress, DesiredCapabilities.firefox());

@@ -1,7 +1,7 @@
 Feature:
 
   Scenario:
-    Given GitHub webpage
+    Given Go to GitHub
     When Search selenium
     And Access to first result
     And Access to commit section

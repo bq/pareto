@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class GitHubResultsPage extends Page {
 
-    @FindBy(xpath ="//*[@class='repo-list-name']/a")
+    @FindBy(xpath ="//*[@class='repo-list js-repo-list']//a")
     List<WebElement> repoList;
 
     public GitHubResultsPage(ParetoWeb paretoWeb) {

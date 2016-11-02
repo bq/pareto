@@ -1,6 +1,5 @@
 package com.bq.qa.pareto.web.util;
 
-import com.bq.qa.pareto.web.ParetoWeb;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 
@@ -10,7 +9,7 @@ public class ParetoWebLogger {
         String filename="paretoWeb";
         Level level;
 
-        switch (ParetoWeb.getConfig().logger_level()){
+        switch ("DEBUG"){
             case "DEBUG": level= Level.DEBUG;break;
             case "ERROR": level= Level.ERROR;break;
             case "ALL": level= Level.ALL;break;

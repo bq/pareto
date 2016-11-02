@@ -2,6 +2,7 @@ package com.bq.qa.pareto.web.example.cucumber.steps;
 
 import com.bq.qa.pareto.web.ParetoWeb;
 import com.bq.qa.pareto.web.driver.ChromeDriver;
+import com.bq.qa.pareto.web.example.config.GithubConfig;
 import com.bq.qa.pareto.web.example.pages.GitHubCommitsPage;
 import com.bq.qa.pareto.web.example.pages.GitHubRepoPage;
 import cucumber.api.java.en.And;
@@ -12,7 +13,7 @@ public class Steps2Def {
     public GitHubCommitsPage gitHubCommitsPage;
 
     public Steps2Def(){
-        ParetoWeb paretoWeb = ParetoWeb.<ChromeDriver>getInstance();
+        ParetoWeb paretoWeb = ParetoWeb.<ChromeDriver,GithubConfig>getInstance(GithubConfig.class);
         this.gitHubRepoPage=new GitHubRepoPage(paretoWeb);
         this.gitHubCommitsPage=new GitHubCommitsPage(paretoWeb);
     }
