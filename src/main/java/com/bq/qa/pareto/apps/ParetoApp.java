@@ -15,44 +15,39 @@ import org.apache.logging.log4j.Logger;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class ParetoApp<D extends AppiumDriver> {
+public class ParetoApp<D extends AppiumDriver,T extends ParetoAppConfig> {
     public static final String IOS = "ios";
     public static final String ANDROID = "android";
     private static ParetoApp paretoApp;
     private final Logger paretoAppLogger=ParetoAppLogger.getLogger();
-
     private AppiumManager appiumManager;
-    private static ParetoAppConfig paretoAppConfig = ConfigFactory.create(ParetoAppConfig.class);
-    private static AndroidAppConfig androidAppConfig = ConfigFactory.create(AndroidAppConfig.class);
-    private static IOSAppConfig iosAppConfig= ConfigFactory.create(IOSAppConfig.class);
 
     private D driver;
+    private T config;
 
-    private ParetoApp() {
+    private ParetoApp(Class<? extends T> klass) {
         appiumManager = new AppiumManager();
-        paretoAppConfig = ConfigFactory.create(ParetoAppConfig.class);
-        androidAppConfig = ConfigFactory.create(AndroidAppConfig.class);
-        iosAppConfig = ConfigFactory.create(IOSAppConfig.class);
+        config = ConfigFactory.create(klass);
     }
 
-    public static ParetoApp getInstance(){
+    public static ParetoApp getInstance(Class<? extends ParetoAppConfig> klass){
         if(paretoApp==null)
-            paretoApp = new ParetoApp<>();
+            paretoApp = new ParetoApp<>(klass);
         return paretoApp;
     }
 
-    public static ParetoAppConfig getConfig() {
-        return paretoAppConfig;
+    public T getConfig(){
+        return config;
     }
 
     public D createDriver(String url,String so){
         driver =null;
         try {
             if(so.equals(ANDROID)){
-                driver = (D) new AndroidDriver(new URL(url));
+                driver = (D) new AndroidDriver(new URL(url), (AndroidAppConfig) config);
             }
             else{
-                driver = (D) new IOSDriver(new URL(url));
+                driver = (D) new IOSDriver(new URL(url), (IOSAppConfig) config);
             }
         } catch (MalformedURLException e) {
             paretoAppLogger.error(e.getMessage());
@@ -60,20 +55,11 @@ public class ParetoApp<D extends AppiumDriver> {
         return driver;
     }
 
-
     public D getDriver(){
         return driver;
     }
 
-    public static AndroidAppConfig getAndroidConfig() {
-        return androidAppConfig;
-    }
-
-    public static IOSAppConfig getIOSConfig() {
-        return iosAppConfig;
-    }
-
     public AppiumServer createAppiumServer(String UDID, String so) {
-        return appiumManager.startAppiumServer(UDID, so);
+        return appiumManager.startAppiumServer(UDID, so,config);
     }
 }

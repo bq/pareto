@@ -1,6 +1,6 @@
 package com.bq.qa.pareto.apps.driver.capabilities;
 
-import com.bq.qa.pareto.apps.ParetoApp;
+import com.bq.qa.pareto.apps.config.IOSAppConfig;
 import io.appium.java_client.remote.IOSMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -8,6 +8,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class IOSCapabilities {
 
     private DesiredCapabilities iosDesiredCapabilities;
+    private IOSAppConfig iosAppConfig;
 
 
     /**
@@ -15,37 +16,38 @@ public class IOSCapabilities {
      *
      * @return a DesiredCapabilities instance.
      */
-    public IOSCapabilities() {
+    public IOSCapabilities(IOSAppConfig iosAppConfig) {
+        this.iosAppConfig = iosAppConfig;
         iosDesiredCapabilities = new DesiredCapabilities();
         setUpIOSCap(iosDesiredCapabilities);
     }
 
     private void setUpIOSCap(DesiredCapabilities capabilities) {
-        setCapability(capabilities, MobileCapabilityType.PLATFORM_VERSION, ParetoApp.getIOSConfig().appium_platformVersion());
-        setCapability(capabilities, MobileCapabilityType.DEVICE_NAME, ParetoApp.getIOSConfig().appium_deviceName());
-        setCapability(capabilities, MobileCapabilityType.PLATFORM_NAME, ParetoApp.getIOSConfig().appium_platformName());
+        setCapability(capabilities, MobileCapabilityType.PLATFORM_VERSION, iosAppConfig.appium_platformVersion());
+        setCapability(capabilities, MobileCapabilityType.DEVICE_NAME, iosAppConfig.appium_deviceName());
+        setCapability(capabilities, MobileCapabilityType.PLATFORM_NAME, iosAppConfig.appium_platformName());
 
-        setCapability(capabilities, IOSMobileCapabilityType.CALENDAR_FORMAT, ParetoApp.getIOSConfig().ios_calendarFormat());
-        setCapability(capabilities, IOSMobileCapabilityType.BUNDLE_ID, ParetoApp.getIOSConfig().ios_bundleId());
-        setCapability(capabilities, IOSMobileCapabilityType.LAUNCH_TIMEOUT, ParetoApp.getIOSConfig().ios_launchTimeout());
-        setCapability(capabilities, IOSMobileCapabilityType.LOCATION_SERVICES_ENABLED, ParetoApp.getIOSConfig().ios_locationServicesEnabled());
-        setCapability(capabilities, IOSMobileCapabilityType.LOCATION_SERVICES_AUTHORIZED, ParetoApp.getIOSConfig().ios_locationServicesAuthorized());
-        setCapability(capabilities, IOSMobileCapabilityType.AUTO_ACCEPT_ALERTS, ParetoApp.getIOSConfig().ios_autoAcceptAlerts());
-        setCapability(capabilities, IOSMobileCapabilityType.AUTO_DISMISS_ALERTS, ParetoApp.getIOSConfig().ios_autoDismissAlerts());
-        setCapability(capabilities, IOSMobileCapabilityType.NATIVE_INSTRUMENTS_LIB, ParetoApp.getIOSConfig().ios_nativeInstrumentsLib());
-        setCapability(capabilities, IOSMobileCapabilityType.NATIVE_WEB_TAP, ParetoApp.getIOSConfig().ios_nativeWebTap());
-        setCapability(capabilities, IOSMobileCapabilityType.SAFARI_INITIAL_URL, ParetoApp.getIOSConfig().ios_safariInitialUrl());
-        setCapability(capabilities, IOSMobileCapabilityType.SAFARI_ALLOW_POPUPS, ParetoApp.getIOSConfig().ios_safariAllowPopups());
-        setCapability(capabilities, IOSMobileCapabilityType.SAFARI_IGNORE_FRAUD_WARNING, ParetoApp.getIOSConfig().ios_safariIgnoreFraudWarning());
-        setCapability(capabilities, IOSMobileCapabilityType.SAFARI_OPEN_LINKS_IN_BACKGROUND, ParetoApp.getIOSConfig().ios_safariOpenLinksInBackground());
-        setCapability(capabilities, IOSMobileCapabilityType.KEEP_KEY_CHAINS, ParetoApp.getIOSConfig().ios_keepKeyChains());
-        setCapability(capabilities, IOSMobileCapabilityType.LOCALIZABLE_STRINGS_DIR, ParetoApp.getIOSConfig().ios_localizableStringsDir());
-        setCapability(capabilities, IOSMobileCapabilityType.PROCESS_ARGUMENTS, ParetoApp.getIOSConfig().ios_processArguments());
-        setCapability(capabilities, IOSMobileCapabilityType.SHOW_IOS_LOG, ParetoApp.getIOSConfig().ios_showIOSLog());
-        setCapability(capabilities, IOSMobileCapabilityType.SEND_KEY_STRATEGY, ParetoApp.getIOSConfig().ios_sendKeyStrategy());
-        setCapability(capabilities, IOSMobileCapabilityType.SCREENSHOT_WAIT_TIMEOUT, ParetoApp.getIOSConfig().ios_screenshotWaitTimeout());
-        setCapability(capabilities, IOSMobileCapabilityType.WAIT_FOR_APP_SCRIPT, ParetoApp.getIOSConfig().ios_waitForAppScript());
-        setCapability(capabilities, IOSMobileCapabilityType.WEBVIEW_CONNECT_RETRIES, ParetoApp.getIOSConfig().ios_webviewConnectRetries());
+        setCapability(capabilities, IOSMobileCapabilityType.CALENDAR_FORMAT, iosAppConfig.ios_calendarFormat());
+        setCapability(capabilities, IOSMobileCapabilityType.BUNDLE_ID, iosAppConfig.ios_bundleId());
+        setCapability(capabilities, IOSMobileCapabilityType.LAUNCH_TIMEOUT, iosAppConfig.ios_launchTimeout());
+        setCapability(capabilities, IOSMobileCapabilityType.LOCATION_SERVICES_ENABLED, iosAppConfig.ios_locationServicesEnabled());
+        setCapability(capabilities, IOSMobileCapabilityType.LOCATION_SERVICES_AUTHORIZED, iosAppConfig.ios_locationServicesAuthorized());
+        setCapability(capabilities, IOSMobileCapabilityType.AUTO_ACCEPT_ALERTS, iosAppConfig.ios_autoAcceptAlerts());
+        setCapability(capabilities, IOSMobileCapabilityType.AUTO_DISMISS_ALERTS, iosAppConfig.ios_autoDismissAlerts());
+        setCapability(capabilities, IOSMobileCapabilityType.NATIVE_INSTRUMENTS_LIB, iosAppConfig.ios_nativeInstrumentsLib());
+        setCapability(capabilities, IOSMobileCapabilityType.NATIVE_WEB_TAP, iosAppConfig.ios_nativeWebTap());
+        setCapability(capabilities, IOSMobileCapabilityType.SAFARI_INITIAL_URL, iosAppConfig.ios_safariInitialUrl());
+        setCapability(capabilities, IOSMobileCapabilityType.SAFARI_ALLOW_POPUPS, iosAppConfig.ios_safariAllowPopups());
+        setCapability(capabilities, IOSMobileCapabilityType.SAFARI_IGNORE_FRAUD_WARNING, iosAppConfig.ios_safariIgnoreFraudWarning());
+        setCapability(capabilities, IOSMobileCapabilityType.SAFARI_OPEN_LINKS_IN_BACKGROUND, iosAppConfig.ios_safariOpenLinksInBackground());
+        setCapability(capabilities, IOSMobileCapabilityType.KEEP_KEY_CHAINS, iosAppConfig.ios_keepKeyChains());
+        setCapability(capabilities, IOSMobileCapabilityType.LOCALIZABLE_STRINGS_DIR, iosAppConfig.ios_localizableStringsDir());
+        setCapability(capabilities, IOSMobileCapabilityType.PROCESS_ARGUMENTS, iosAppConfig.ios_processArguments());
+        setCapability(capabilities, IOSMobileCapabilityType.SHOW_IOS_LOG, iosAppConfig.ios_showIOSLog());
+        setCapability(capabilities, IOSMobileCapabilityType.SEND_KEY_STRATEGY, iosAppConfig.ios_sendKeyStrategy());
+        setCapability(capabilities, IOSMobileCapabilityType.SCREENSHOT_WAIT_TIMEOUT, iosAppConfig.ios_screenshotWaitTimeout());
+        setCapability(capabilities, IOSMobileCapabilityType.WAIT_FOR_APP_SCRIPT, iosAppConfig.ios_waitForAppScript());
+        setCapability(capabilities, IOSMobileCapabilityType.WEBVIEW_CONNECT_RETRIES, iosAppConfig.ios_webviewConnectRetries());
     }
 
     private void setCapability(DesiredCapabilities cap, String key, Object value) {

@@ -1,6 +1,5 @@
 package com.bq.qa.pareto.apps.server;
 
-import com.bq.qa.pareto.apps.ParetoApp;
 import com.bq.qa.pareto.apps.config.ParetoAppConfig;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -10,11 +9,11 @@ import static com.bq.qa.pareto.apps.ParetoApp.ANDROID;
 public class ServerFactory {
 
 
-    public static AppiumServer initServer(String UDID, String SO){
+    public static AppiumServer initServer(String UDID, String SO,ParetoAppConfig paretoAppConfig){
         if(SO.equals(ANDROID)){
-            return new AppiumServer(getAppiumCapabilities(ParetoApp.getAndroidConfig()),UDID);
+            return new AppiumServer(getAppiumCapabilities(paretoAppConfig),UDID,paretoAppConfig);
         }else{
-            return new AppiumServer(getAppiumCapabilities(ParetoApp.getIOSConfig()),UDID);
+            return new AppiumServer(getAppiumCapabilities(paretoAppConfig),UDID,paretoAppConfig);
         }
 
     }

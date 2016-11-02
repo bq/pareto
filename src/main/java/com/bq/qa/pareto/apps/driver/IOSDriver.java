@@ -1,6 +1,6 @@
 package com.bq.qa.pareto.apps.driver;
 
-import com.bq.qa.pareto.apps.ParetoApp;
+import com.bq.qa.pareto.apps.config.IOSAppConfig;
 import com.bq.qa.pareto.apps.driver.actions.MobileActions;
 import com.bq.qa.pareto.apps.driver.actions.MobileActionsImpl;
 import com.bq.qa.pareto.apps.driver.capabilities.IOSCapabilities;
@@ -8,7 +8,6 @@ import com.bq.qa.pareto.apps.driver.connection.IOSNetwork;
 import com.bq.qa.pareto.apps.driver.connection.Network;
 import com.bq.qa.pareto.apps.driver.context.Context;
 import cucumber.api.Scenario;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebElement;
 
 import java.net.URL;
@@ -24,18 +23,20 @@ public class IOSDriver extends io.appium.java_client.ios.IOSDriver implements Mo
     private MobileActions mobileActions;
     private IOSNetwork iosNetwork;
     private Context context;
+    private IOSAppConfig iosAppConfig;
 
     /**
      * Constructor
      *
      * @param remoteAddress       remote address
      */
-    public IOSDriver(URL remoteAddress) {
-        super(remoteAddress, new IOSCapabilities().getIosDesiredCapabilities());
+    public IOSDriver(URL remoteAddress, IOSAppConfig iosAppConfig) {
+        super(remoteAddress, new IOSCapabilities(iosAppConfig).getIosDesiredCapabilities());
+        this.iosAppConfig = iosAppConfig;
         this.mobileActions = new MobileActionsImpl(this);
-        this.iosNetwork= new IOSNetwork(this);
+        this.iosNetwork= new IOSNetwork(this,iosAppConfig);
         this.context = new Context(this);
-        manage().timeouts().implicitlyWait(ParetoApp.getConfig().driver_timeout(), TimeUnit.SECONDS);
+        manage().timeouts().implicitlyWait(iosAppConfig.driver_timeout(), TimeUnit.SECONDS);
     }
 
     @Override

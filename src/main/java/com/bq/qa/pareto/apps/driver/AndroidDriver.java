@@ -1,7 +1,7 @@
 package com.bq.qa.pareto.apps.driver;
 
 
-import com.bq.qa.pareto.apps.ParetoApp;
+import com.bq.qa.pareto.apps.config.AndroidAppConfig;
 import com.bq.qa.pareto.apps.driver.actions.MobileActions;
 import com.bq.qa.pareto.apps.driver.actions.MobileActionsImpl;
 import com.bq.qa.pareto.apps.driver.capabilities.AndroidCapabilities;
@@ -29,19 +29,21 @@ public class AndroidDriver extends io.appium.java_client.android.AndroidDriver i
     private MobileActions mobileActions;
     private AndroidNetwork androidNetwork;
     private Logger paretoLogger;
+    private AndroidAppConfig androidAppConfig;
 
     /**
      * Constructor
      *
      * @param remoteAddress       emote address
      */
-    public AndroidDriver(URL remoteAddress) {
-        super(remoteAddress, new AndroidCapabilities().getDesiredCapabilities());
+    public AndroidDriver(URL remoteAddress, AndroidAppConfig androidAppConfig) {
+        super(remoteAddress, new AndroidCapabilities(androidAppConfig).getDesiredCapabilities());
+        this.androidAppConfig = androidAppConfig;
         this.mobileActions = new MobileActionsImpl(this);
         this.androidNetwork = new AndroidNetwork(this);
         this.paretoLogger = ParetoAppLogger.getLogger();
 
-        manage().timeouts().implicitlyWait(ParetoApp.getConfig().driver_timeout(), TimeUnit.SECONDS);
+        manage().timeouts().implicitlyWait(androidAppConfig.driver_timeout(), TimeUnit.SECONDS);
     }
 
     @Override

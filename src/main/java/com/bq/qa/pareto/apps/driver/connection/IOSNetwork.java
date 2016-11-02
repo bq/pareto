@@ -1,7 +1,7 @@
 package com.bq.qa.pareto.apps.driver.connection;
 
 
-import com.bq.qa.pareto.apps.ParetoApp;
+import com.bq.qa.pareto.apps.config.IOSAppConfig;
 import com.bq.qa.pareto.apps.exceptions.DeviceNotIdentified;
 import com.bq.qa.pareto.apps.util.ParetoAppLogger;
 import io.appium.java_client.ios.IOSDriver;
@@ -27,15 +27,18 @@ public class IOSNetwork implements Network {
     private Logger paretoLogger;
     private IOSDriver iosDriver;
     private String deviceType;
+    private IOSAppConfig iosAppConfig;
+
     /**
      * Constructor
      *
      * @param iosDriver
      */
-    public IOSNetwork(IOSDriver iosDriver) {
+    public IOSNetwork(IOSDriver iosDriver, IOSAppConfig iosAppConfig) {
+        this.iosAppConfig = iosAppConfig;
         this.paretoLogger = ParetoAppLogger.getLogger();
         this.iosDriver = iosDriver;
-        this.deviceType = ParetoApp.getIOSConfig().appium_deviceName();
+        this.deviceType = iosAppConfig.appium_deviceName();
 
     }
 

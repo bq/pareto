@@ -1,6 +1,6 @@
 package com.bq.qa.pareto.apps.emulator;
 
-import com.bq.qa.pareto.apps.ParetoApp;
+import com.bq.qa.pareto.apps.config.AndroidAppConfig;
 import com.bq.qa.pareto.apps.util.ParetoAppLogger;
 import com.bq.qa.pareto.apps.util.Timer;
 import org.apache.logging.log4j.Logger;
@@ -22,13 +22,15 @@ public class AndroidEmulator {
     private String emulatorName;
     private Process androidEmulator;
     private final String UDID;
+    private AndroidAppConfig androidAppConfig;
 
 
-    public AndroidEmulator(String UDID) {
+    public AndroidEmulator(String UDID, AndroidAppConfig androidAppConfig) {
         this.UDID = UDID;
+        this.androidAppConfig = androidAppConfig;
         emulatorBin = System.getenv(ANDROID_HOME) + EMULATOR_BIN_PATH;
         adbBin = System.getenv(ANDROID_HOME) + ADB_BIN_PATH;
-        emulatorName = ParetoApp.getAndroidConfig().android_emulatorname();
+        emulatorName = androidAppConfig.android_emulatorname();
     }
 
     /**
@@ -45,7 +47,7 @@ public class AndroidEmulator {
      */
     public void start() {
         try {
-            androidEmulator = Runtime.getRuntime().exec(emulatorBin + " -avd " + emulatorName +" -port "+ParetoApp.getAndroidConfig().android_emulatorport());
+            androidEmulator = Runtime.getRuntime().exec(emulatorBin + " -avd " + emulatorName +" -port "+androidAppConfig.android_emulatorport());
 
             while(!isInitialized()){
                 Timer.waitSeconds(5);
@@ -59,7 +61,7 @@ public class AndroidEmulator {
 
     private boolean isInitialized() throws IOException {
         boolean initialized = false;
-        String command= adbBin+" -s "+ "emulator-"+ParetoApp.getAndroidConfig().android_emulatorport()+" shell getprop sys.boot_completed";
+        String command= adbBin+" -s "+ "emulator-"+androidAppConfig.android_emulatorport()+" shell getprop sys.boot_completed";
         androidEmulator=Runtime.getRuntime().exec(command);
 
         BufferedReader stdInput = new BufferedReader(new

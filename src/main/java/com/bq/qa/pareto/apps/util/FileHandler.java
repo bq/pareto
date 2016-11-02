@@ -1,6 +1,6 @@
 package com.bq.qa.pareto.apps.util;
 
-import com.bq.qa.pareto.apps.ParetoApp;
+import com.bq.qa.pareto.apps.config.ParetoAppConfig;
 import org.apache.http.HttpEntity;
 import org.apache.logging.log4j.Logger;
 
@@ -159,8 +159,8 @@ public class FileHandler {
     /**
      * Creates the directory where to save the binary
      */
-    public static void createBinaryDirectory() {
-        File binaryDirectory = new File(ParetoApp.getConfig().binary_path());
+    public static void createBinaryDirectory(ParetoAppConfig paretoAppConfig) {
+        File binaryDirectory = new File(paretoAppConfig.binary_path());
         if (!binaryDirectory.exists()) binaryDirectory.mkdirs();
     }
 }

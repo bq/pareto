@@ -21,8 +21,10 @@ public class CucumberExample {
     @Before
     public  void beforeScenario() throws Exception {
         paretoWeb = ParetoWeb.<ChromeDriver>getInstance();
+
         paretoWeb.createLocalServer();
         paretoWeb.getLocalServer().startSeleniumServer();
+
         webDriver = paretoWeb.createDriver(ParetoWeb.BROWSER.FIREFOX);
         webDriver.manage().window().maximize();
     }

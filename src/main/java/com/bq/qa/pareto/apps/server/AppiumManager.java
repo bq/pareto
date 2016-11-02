@@ -1,5 +1,7 @@
 package com.bq.qa.pareto.apps.server;
 
+import com.bq.qa.pareto.apps.config.AndroidAppConfig;
+import com.bq.qa.pareto.apps.config.ParetoAppConfig;
 import com.bq.qa.pareto.apps.emulator.AndroidEmulator;
 import com.bq.qa.pareto.apps.util.ParetoAppLogger;
 import org.apache.logging.log4j.Logger;
@@ -34,8 +36,8 @@ public class AppiumManager {
      *
      * @param udid
      */
-    public void startAndroidEmulator(String udid) {
-        AndroidEmulator androidEmulator = new AndroidEmulator(udid);
+    public void startAndroidEmulator(String udid, AndroidAppConfig androidAppConfig) {
+        AndroidEmulator androidEmulator = new AndroidEmulator(udid,androidAppConfig);
         paretoLogger.debug("Starting the Android Emulator by UDID");
         androidEmulator.start();
         androidEmulators.add(androidEmulator);
@@ -57,8 +59,8 @@ public class AppiumManager {
      *
      * @return An instance of AppiumServer class
      */
-    public AppiumServer startAppiumServer(String udid,String so) {
-        AppiumServer server =  ServerFactory.initServer(udid,so);
+    public AppiumServer startAppiumServer(String udid, String so, ParetoAppConfig config) {
+        AppiumServer server =  ServerFactory.initServer(udid,so,config);
         paretoLogger.debug("Starting the Appium Server");
         server.start();
         appiumServerList.add(server);

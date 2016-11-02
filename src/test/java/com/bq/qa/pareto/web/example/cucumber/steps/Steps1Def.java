@@ -27,6 +27,8 @@ public class Steps1Def {
         webDriver.get(ParetoWeb.getConfig().driver_endpoint());
     }
 
+
+
     @When("^Search (.*)$")
     public void search_word(String word){
         gitHubHomePage.search(word);

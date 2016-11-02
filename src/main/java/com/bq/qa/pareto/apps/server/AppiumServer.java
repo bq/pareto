@@ -1,6 +1,6 @@
 package com.bq.qa.pareto.apps.server;
 
-import com.bq.qa.pareto.apps.ParetoApp;
+import com.bq.qa.pareto.apps.config.ParetoAppConfig;
 import com.bq.qa.pareto.apps.util.FileHandler;
 import com.bq.qa.pareto.apps.util.ParetoAppLogger;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -26,19 +26,21 @@ public class AppiumServer {
 
     private String pathAppium;
     private String UDID;
+    private ParetoAppConfig paretoAppConfig;
 
     /**
      * Constructor: creates a server with configuration by default
      * ({@see com.bq.com.apps.server.DefaultServerOptions})
      */
-    public AppiumServer(DesiredCapabilities desiredCapabilities, String UDID) {
+    public AppiumServer(DesiredCapabilities desiredCapabilities, String UDID,ParetoAppConfig paretoAppConfig) {
         this.UDID = UDID;
+        this.paretoAppConfig = paretoAppConfig;
         pathAppium = getAppiumPath();
 
         ServerArgument bootstrapPort = () -> "--bootstrap-port";
 
-        ServerArgument options = () -> ParetoApp.getConfig().appium_options();
-        String log_level = ParetoApp.getConfig().appium_log_level();
+        ServerArgument options = () -> paretoAppConfig.appium_options();
+        String log_level = paretoAppConfig.appium_log_level();
         File logFile = new File(FileHandler.getLogPath());
         if(!"default".equals(UDID))
             desiredCapabilities.setCapability(MobileCapabilityType.UDID,UDID);
@@ -46,7 +48,7 @@ public class AppiumServer {
         AppiumServiceBuilder builder = new AppiumServiceBuilder()
                 .usingAnyFreePort()
                 .withAppiumJS(new File(pathAppium))
-                .withIPAddress(ParetoApp.getConfig().appium_ip())
+                .withIPAddress(paretoAppConfig.appium_ip())
                 .withArgument(bootstrapPort, getRandomPort())
                 .withArgument(GeneralServerFlag.LOG_LEVEL, log_level)
                 .withLogFile(logFile)
@@ -98,7 +100,7 @@ public class AppiumServer {
      * Setups the version on an Appium command
      */
     private String getAppiumPath() {
-        String baseCommand = ParetoApp.getConfig().appium_bin();
+        String baseCommand = paretoAppConfig.appium_bin();
         return baseCommand;
     }
 

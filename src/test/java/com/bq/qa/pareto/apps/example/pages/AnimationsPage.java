@@ -2,6 +2,7 @@ package com.bq.qa.pareto.apps.example.pages;
 
 import com.bq.qa.pareto.apps.ParetoApp;
 import com.bq.qa.pareto.apps.driver.AndroidDriver;
+import com.bq.qa.pareto.apps.example.config.ApiDemoConfig;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
@@ -20,9 +21,9 @@ public class AnimationsPage {
     @AndroidFindBy(id="android:id/text1")
     List<WebElement> menuListAnimations;
 
-    public AnimationsPage(ParetoApp<AndroidDriver> paretoApp) {
+    public AnimationsPage(ParetoApp<AndroidDriver,ApiDemoConfig> paretoApp) {
         androidDriver = paretoApp.getDriver();
-        PageFactory.initElements(new AppiumFieldDecorator(androidDriver, paretoApp.getAndroidConfig().driver_timeout(), TimeUnit.SECONDS),this);
+        PageFactory.initElements(new AppiumFieldDecorator(androidDriver, paretoApp.getConfig().driver_timeout(), TimeUnit.SECONDS),this);
     }
 
     public void accessToBouncingBalls(){
