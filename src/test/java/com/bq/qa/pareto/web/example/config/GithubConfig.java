@@ -7,4 +7,5 @@ import org.aeonbits.owner.Config;
 @Config.Sources({"classpath:default.properties",
         "classpath:ProjectConfig.properties"})
 public interface GithubConfig extends ParetoWebConfig{
+
 }
