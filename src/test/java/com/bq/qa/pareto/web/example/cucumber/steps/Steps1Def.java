@@ -1,7 +1,7 @@
 package com.bq.qa.pareto.web.example.cucumber.steps;
 
 import com.bq.qa.pareto.web.ParetoWeb;
-import com.bq.qa.pareto.web.driver.FirefoxDriver;
+import com.bq.qa.pareto.web.driver.ChromeDriver;
 import com.bq.qa.pareto.web.example.config.GithubConfig;
 import com.bq.qa.pareto.web.example.pages.GitHubHomePage;
 import com.bq.qa.pareto.web.example.pages.GitHubResultsPage;
@@ -18,7 +18,7 @@ public class Steps1Def {
     public WebDriver webDriver;
 
     public Steps1Def(){
-        paretoWeb = ParetoWeb.<FirefoxDriver,GithubConfig>getInstance(GithubConfig.class);
+        paretoWeb = ParetoWeb.<ChromeDriver,GithubConfig>getInstance(GithubConfig.class);
         this.gitHubHomePage= new GitHubHomePage(paretoWeb);
         this.gitHubResultsPage=new GitHubResultsPage(paretoWeb);
         this.webDriver=paretoWeb.getDriver();

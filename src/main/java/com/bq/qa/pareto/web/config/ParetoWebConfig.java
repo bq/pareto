@@ -17,7 +17,7 @@ public interface ParetoWebConfig extends Config{
     int selenium_port();
 
     //CHROMEDRIVER
-    @DefaultValue("2.20")
+    @DefaultValue("2.25")
     @Config.Key("chromedriver.version")
     String chromedriver_version();
 
