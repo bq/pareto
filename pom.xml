@@ -6,7 +6,7 @@
 
     <groupId>com.bq.qa</groupId>
     <artifactId>pareto</artifactId>
-    <version>0.3.0</version>
+    <version>0.3.1</version>
     <packaging>jar</packaging>
     <name>pareto</name>
     <url>https://github.com/bq/pareto</url>
