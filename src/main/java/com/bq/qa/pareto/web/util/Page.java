@@ -1,16 +1,17 @@
 package com.bq.qa.pareto.web.util;
 
+import com.bq.qa.pareto.web.driver.BrowserDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class Page {
+public class Page<D extends BrowserDriver> {
 
     protected WebDriver webDriver;
 
     public Page(){}
 
-    public Page(WebDriver webDriver){
+    public Page(D webDriver){
         this.webDriver=webDriver;
     }
 
