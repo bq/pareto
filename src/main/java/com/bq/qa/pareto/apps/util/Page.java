@@ -4,10 +4,10 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 
-public class Page {
-    protected AppiumDriver driver;
+public class Page<D extends AppiumDriver> {
+    protected D driver;
 
-    public Page(AppiumDriver appiumDriver){
+    public Page(D appiumDriver){
         this.driver=appiumDriver;
     }
 
